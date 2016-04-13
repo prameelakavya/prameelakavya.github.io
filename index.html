@@ -1,36 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Medical Named Entity Recognition in tweets by prameelakavya</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Medical Named Entity Recognition in tweets</h1>
-        <p class="header">By kavya, aditi and udbhav</p>
+    <section class="page-header">
+      <h1 class="project-name">Medical Named Entity Recognition in tweets</h1>
+      <h2 class="project-tagline">By kavya, aditi and udbhav</h2>
+    </section>
 
-
-
-        <ul>
-          <li><a class="buttons github" href="https://github.com/prameelakavya">GitHub Profile</a></li>
-        </ul>
-
-      </header>
-      <section>
-        <h3>
+    <section class="main-content">
+      <h3>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction:</h3>
 
-<p>This project aims at parsing named entities and recognizing and classifying medical data into the relevant categories, namely drugs, diseases, symptoms, side-effects, treatment, etc. Twitter data will be the input and based on previous medical data from databases and ontologies, relevant medical terms have to be parsed and classified (medical named entities are recognised and classified based on the category they belong to(ex: drug or a disease or cure etc...).)</p>
+<p>This project aims at parsing named entities and recognizing and classifying medical data into the relevant categories, namely drugs, diseases, symptoms, side-effects, treatment, etc. Twitter data will be the input and based on previous medical data from databases and ontologies, relevant medical terms have to be parsed and classified (medical named entities are recognized and classified based on the category they belong to(ex: drug or a disease or cure etc...).)</p>
 
 <h3>
 <a id="problem-statement" class="anchor" href="#problem-statement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem Statement:</h3>
@@ -42,7 +31,7 @@
 
 <ul>
 <li>Tweets are very noisy and so much contextual.</li>
-<li>All tweets containig the keyword 'asthma' are not about the disease 'asthma'.</li>
+<li>All tweets containing the keyword 'asthma' are not about the disease 'asthma'.</li>
 <li>Learning distributed representations for medical tweets.</li>
 <li>Entity linking for exploiting semantic features from ontologies (UMLS, MetaMap).</li>
 </ul>
@@ -104,11 +93,11 @@
 <h3>
 <a id="analysis-from-experiments" class="anchor" href="#analysis-from-experiments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Analysis from experiments:</h3>
 
-<p>Actually initially we trained using only one feature for 1-gram thing which is just the token and its corresponding label and for 5-gram thing we just took the token, previous two words and next two words.
+<p>Initially we trained using only one feature for 1-gram thing which is just the token and its corresponding label and for 5-gram thing we just took the token, previous two words and next two words.
 But later we thought of increasing the features and also the features that might effect the current words label, since as we have said before <strong>tweets are more contextual</strong>. The features used are mentioned above.</p>
 
 <ul>
-<li>We used word features because of the language dependency of the current word on its neighbours.</li>
+<li>We used word features because of the language dependency of the current word on its neighbors.</li>
 <li>We used POS tags to incorporate grammatic rules.</li>
 <li>We used Semantic feature of each word to find how much is it related to the label.</li>
 <li>We used orthographic features because medical terms have long biological names(length feature comes into picture) and similarly others.</li>
@@ -118,14 +107,27 @@ But later we thought of increasing the features and also the features that might
 <h3>
 <a id="accuracy" class="anchor" href="#accuracy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accuracy:</h3>
 
+<h3>
+<a id="tags" class="anchor" href="#tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tags:</h3>
+
+<p>Information retrieval and extraction.
+Major Project.
+Medical entity recognition.
+IIIT HYDERABAD.
+Tweets.
+Conditional random fields.
+Feature extraction.</p>
+
 <p>The source code can be viewed at <a href="https://github.com/prameelakavya/prameelakavya.github.io">GitHub Link</a>
 A video describing the procedure and results can be found at <a href="">youtube video link</a></p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+    </section>
+
+  
   </body>
 </html>
