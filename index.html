@@ -1,2 +1,131 @@
-hello world
-helloooo 
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Medical Named Entity Recognition in tweets by prameelakavya</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Medical Named Entity Recognition in tweets</h1>
+        <p class="header">By kavya, aditi and udbhav</p>
+
+
+
+        <ul>
+          <li><a class="buttons github" href="https://github.com/prameelakavya">GitHub Profile</a></li>
+        </ul>
+
+      </header>
+      <section>
+        <h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction:</h3>
+
+<p>This project aims at parsing named entities and recognizing and classifying medical data into the relevant categories, namely drugs, diseases, symptoms, side-effects, treatment, etc. Twitter data will be the input and based on previous medical data from databases and ontologies, relevant medical terms have to be parsed and classified (medical named entities are recognised and classified based on the category they belong to(ex: drug or a disease or cure etc...).)</p>
+
+<h3>
+<a id="problem-statement" class="anchor" href="#problem-statement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem Statement:</h3>
+
+<p>The task of a Medical Name Entity Recognizer is to identify medical entities in text. Medical entities can be diseases, drugs, symptoms, etc. Previously, researchers in the field have used hand crafted features to identify medical entities in medical literature. In this work, we wish to extend medical entity recognition on tweets. We are expected to use NLP toolkits designed for processing tweets along with other medical ontologies (or databases) to exploit a lot of semantic features for this task.</p>
+
+<h3>
+<a id="challenges-we-faced" class="anchor" href="#challenges-we-faced" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Challenges we faced:</h3>
+
+<ul>
+<li>Tweets are very noisy and so much contextual.</li>
+<li>All tweets containig the keyword 'asthma' are not about the disease 'asthma'.</li>
+<li>Learning distributed representations for medical tweets.</li>
+<li>Entity linking for exploiting semantic features from ontologies (UMLS, MetaMap).</li>
+</ul>
+
+<h3>
+<a id="applications" class="anchor" href="#applications" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Applications:</h3>
+
+<ul>
+<li>The results of analyzing such data will be used by pharma companies to boost their sales and also procure knowledge about sales of drugs manufactured by other companies pertaining to the same disease.</li>
+<li>These results will also be beneficial in getting an estimate of the presence of any disease in a particular region and its prevalence.</li>
+</ul>
+
+<h3>
+<a id="dataset" class="anchor" href="#dataset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DataSet:</h3>
+
+<ul>
+<li>We have a dataset of 1 year of tweets about 4 diseases and 32 drugs. </li>
+<li>A team of domain experts has annotated about 2000 tweets with entities (around 20 types: diseases, drugs, symptoms) and relations (around 40 relation types: cures, causes, etc). </li>
+</ul>
+
+<h3>
+<a id="toolkits-we-used" class="anchor" href="#toolkits-we-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ToolKits we used:</h3>
+
+<ul>
+<li>CRF++</li>
+<li>Metamap+</li>
+<li>NLTK</li>
+</ul>
+
+<h3>
+<a id="algorithm" class="anchor" href="#algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithm:</h3>
+
+<p><strong><em>The algorithm we used for classifying the medical text goes like this:</em></strong></p>
+
+<ul>
+<li><em>Parsing and tokenizing tweets</em></li>
+<li><em>Using training data labels to generate the feature files (for both 1-gram and 5-gram models).</em></li>
+<li><em>Using the output feature file generated in step 2, along with the template file, we use crf_learn command to generate a model file (for both 1-gram and 5-gram).</em></li>
+<li><em>We now generate the feature files for the testing data, excluding the labels.</em></li>
+<li><em>Using the output feature file generated in step 4, along with the template file, we use crf_test command to get the labels for the test data.</em></li>
+<li><em>We compare the predicted labels with the actual test data labels to get the percentage accuracy.</em></li>
+</ul>
+
+<p><strong><em>Features Used:</em></strong></p>
+
+<ul>
+<li>
+<em>Word features</em> : The word itself, two words before and three words after, along with their lemmas(its the root word of the current token).</li>
+<li>
+<em>Morphosyntactic features</em> : POS tags of the word itself, two words before and three words after.</li>
+<li>
+<em>Semantic features</em> : Semantic category of the word, provided by Metamap+.</li>
+<li>
+<em>Other features</em> : Next noun, previous verb, previous adjective, next verb.</li>
+<li>
+<em>Orthographic features</em> : The word contains -, +, &amp;, etc.. is a number, letter, punctuation, etc.. is in upper case, capitalized, etc.. Prefixes of different length (from 1 to 4),Suffixes of different length (from 1 to 4).</li>
+</ul>
+
+<h3>
+<a id="analysis-from-experiments" class="anchor" href="#analysis-from-experiments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Analysis from experiments:</h3>
+
+<p>Actually initially we trained using only one feature for 1-gram thing which is just the token and its corresponding label and for 5-gram thing we just took the token, previous two words and next two words.
+But later we thought of increasing the features and also the features that might effect the current words label, since as we have said before tweets are more contextual. The features used are mentioned above.</p>
+
+<ul>
+<li>We used word features because of the language dependency of the current word on its neighbours.</li>
+<li>We used POS tags to incorporate grammatic rules.</li>
+<li>We used Semantic feature of each word to find how much is it related to the label.</li>
+<li>We used orthographic features because medical terms have long biological names(length feature comes into picture) and similarly others.</li>
+<li>We also used other features like nearest previous adjective , because adjectives give a way more insight into the disease or symptoms.</li>
+</ul>
+
+<h3>
+<a id="accuracy" class="anchor" href="#accuracy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accuracy:</h3>
+
+<p>The source code can be viewed at <a href="https://github.com/prameelakavya/prameelakavya.github.io">GitHub Link</a>
+A video describing the procedure and results can be found at <a href="">youtube video link</a></p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
